@@ -24,7 +24,6 @@ export default function Home() {
     try {
       const resp = await getSong(songName);
       if (resp) {
-        console.log(resp);
         const parse_lyrics = parseLyrics(resp?.data.lyrics);
         setLyrics(parse_lyrics);
         setArtist(resp.data.artist);

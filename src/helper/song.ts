@@ -56,7 +56,10 @@ function displayLyrics(
 const getSong = async (song: string) => {
   const params = { song: song };
   try {
-    const response = await axios.get("/api/song", { params });
+    const response = await axios.get(
+      "https://lyrics-liard.vercel.app/api/song",
+      { params }
+    );
     return response;
   } catch (error) {
     console.log("errorr");
