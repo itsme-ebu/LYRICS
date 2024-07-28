@@ -18,12 +18,13 @@ interface ResponseData {
 }
 
 export async function GET(req: NextRequest, res: NextResponse) {
+  console.log(req);
+
   const song_name = req?.url?.split("song=")[1].split("+").join(" ");
   const client = new Client();
   const searches = await client.songs.search(song_name || "");
   const firstSong = searches[0] as Song; // Use the custom type assertion
   const lyrics = await firstSong.lyrics();
-
   const responsee: ResponseData = {
     lyrics: lyrics,
     title: firstSong.title,
