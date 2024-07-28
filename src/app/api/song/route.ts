@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { Client } from "genius-lyrics";
 import { json } from "stream/consumers";
+import { NextRequest, NextResponse } from "next/server";
 
 type ResponseData = {
   lyrics: string;
@@ -9,7 +10,7 @@ type ResponseData = {
   artist: string;
 };
 
-export async function GET(req: NextApiRequest, res: NextApiResponse) {
+export async function GET(req: NextRequest, res: NextResponse) {
   const song_name = req?.url?.split("song=")[1].split("+").join(" ");
   const client = new Client();
   const searches = await client.songs.search(song_name || "");

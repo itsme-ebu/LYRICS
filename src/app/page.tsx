@@ -29,11 +29,10 @@ export default function Home() {
 
   return (
     <main className="bg-black text-white w-full min-h-screen">
-      <h1 className=" text-[18rem] z-[2] bg-black leading-[0.8] text-center w-full">
+      <h1 className="text-9xl md:text-[18rem] z-[2]  md:leading-[0.8] text-center w-full">
         LYRICS
       </h1>
-
-      <div className="w-1/2 mx-auto p-8 flex">
+      <div className="w-full md:w-1/2 mx-auto p-4 md:p-8 flex max-md:flex-col max-md:items-center max-md:gap-3">
         <input
           type="text"
           placeholder="Song Name"
@@ -43,27 +42,26 @@ export default function Home() {
         />
         {loading ? (
           <button
-            className="bg-slate-300 px-8 py-4 text-black cursor-pointer"
+            className="bg-slate-300 max-md:w-1/2 px-8 py-4 text-black cursor-pointer"
             disabled
           >
             Search
           </button>
         ) : (
           <button
-            className="bg-white px-8 py-4 text-black cursor-pointer"
+            className="bg-white max-md:w-1/2 px-8 py-4 text-black cursor-pointer"
             onClick={getnow}
           >
             Search
           </button>
         )}
       </div>
-
-      <div className="w-fit mx-auto py-5 relative ">
+      <div className="w-fit mx-auto py-5 mt-10 relative ">
         <h2 className="text-5xl text-center">{title}</h2>
         <p className=" absolute -bottom-2 right-0">{artist}</p>
       </div>
 
-      <div className="w-1/2 h-80 mx-auto overflow-y-scroll">
+      <div className="w-full px-10 md:w-1/2 h-[60vh] mt-14 md:h-80 mx-auto overflow-y-scroll">
         {lyrics.map((e, i) => (
           <div key={i}>
             <h2 className="text-2xl my-3">{e.title}</h2>
