@@ -6,7 +6,11 @@ import { Skeleton } from "../components/ui/skeleton";
 import { ReloadIcon } from "@radix-ui/react-icons";
 import { Button } from "@/components/ui/button";
 export default function Home() {
-  const [lyrics, setLyrics] = useState<string[]>([]);
+  interface Lyric {
+    title: string;
+    content: string;
+  }
+  const [lyrics, setLyrics] = useState<Lyric[]>([]);
   const [artist, setArtist] = useState<string>("");
   const [title, setTitle] = useState<string>("");
   const [songName, setSongName] = useState<string>("");
