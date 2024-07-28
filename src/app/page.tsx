@@ -6,10 +6,10 @@ import { Skeleton } from "../components/ui/skeleton";
 import { ReloadIcon } from "@radix-ui/react-icons";
 import { Button } from "@/components/ui/button";
 export default function Home() {
-  const [lyrics, setLyrics] = useState([]);
-  const [artist, setArtist] = useState("");
-  const [title, setTitle] = useState("");
-  const [songName, setSongName] = useState("");
+  const [lyrics, setLyrics] = useState<string[]>([]);
+  const [artist, setArtist] = useState<string>("");
+  const [title, setTitle] = useState<string>("");
+  const [songName, setSongName] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
 
   async function getnow() {
@@ -17,14 +17,19 @@ export default function Home() {
       console.log("search something");
     }
     setLoading(true);
-    const resp = await getSong(songName);
-    console.log(resp?.data.title);
-    const parse_lyrics = parseLyrics(resp?.data.lyrics);
-    setLyrics(parse_lyrics);
-    setArtist(resp.data.artist);
-    setTitle(resp.data.title);
-    setLoading(false);
-    setSongName("");
+    try {
+      const resp = await getSong(songName);
+      console.log(resp);
+      const parse_lyrics = parseLyrics(resp?.data.lyrics);
+      setLyrics(parse_lyrics);
+      setArtist(resp.data.artist);
+      setTitle(resp.data.title);
+    } catch (error) {
+      console.error("Failed to fetch song data", error);
+    } finally {
+      setLoading(false);
+      setSongName("");
+    }
   }
 
   return (
