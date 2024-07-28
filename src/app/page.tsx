@@ -23,11 +23,16 @@ export default function Home() {
     setLoading(true);
     try {
       const resp = await getSong(songName);
-      console.log(resp);
-      const parse_lyrics = parseLyrics(resp?.data.lyrics);
-      setLyrics(parse_lyrics);
-      setArtist(resp.data.artist);
-      setTitle(resp.data.title);
+      if (resp) {
+        console.log(resp);
+        const parse_lyrics = parseLyrics(resp?.data.lyrics);
+        setLyrics(parse_lyrics);
+        setArtist(resp.data.artist);
+        setTitle(resp.data.title);
+      } else {
+        // Handle case where the song data could not be fetched
+        console.log("No song data found");
+      }
     } catch (error) {
       console.error("Failed to fetch song data", error);
     } finally {
